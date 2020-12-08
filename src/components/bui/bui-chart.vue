@@ -1,5 +1,5 @@
 <template>
-  <bui-ratio class="bui_block bui_bgc_white" :ratio="ratio" :width="width" :height="!!ratio ? 0 : height" @change="resize">
+  <bui-ratio class="bui_block bui_bgc_white" :ratio="ratio" :width="width" :height="!!ratio ? 0 : height + 'px'" @change="resize">
     <div :id="'bui-echart-' + _uid" :style="{ width: size.width + 'px', height: size.height + 'px' }"></div>
   </bui-ratio>
 </template>
@@ -38,12 +38,16 @@ export default {
     ratio: { default: '16:9' }
   },
   computed: {},
+  destroyed() {
+    this.echart = null
+  },
   mounted() {
     this.size = {
       width: $(this.$el).width(),
       height: $(this.$el).height()
     }
     this.echart = echarts.init(document.getElementById('bui-echart-' + this._uid))
+    this.setOption()
     setTimeout(() => {
       !!this.echart ? this.echart.resize() : null
     })
@@ -67,7 +71,6 @@ export default {
         // 柱图&线图
         if (this.mode === 'bar' || this.mode === 'line') {
           this.data.forEach((res, index) => {
-            console.log(res.type)
             legend.push(res.label)
             series.push({
               name: res.label,

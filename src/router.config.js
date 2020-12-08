@@ -411,16 +411,7 @@ export default new Router({
             title: '图表',
             info: 'echart'
           },
-          component: routeComp,
-          children: [{
-            path: '/component/echart-barAndLine',
-            name: 'echart-barAndLine',
-            meta: {
-              title: '柱图&线图',
-              info: 'bar & line'
-            },
-            component: () => import('@/pages/component-echart-barAndLine')
-          }]
+          component: () => import('@/pages/component-echart')
         },
 
         // component-幻灯片
