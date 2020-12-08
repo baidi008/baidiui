@@ -6,7 +6,7 @@
         <div class="bui_flex_row_c bui_p_12_lr bui_vm">
           <span class="bui_fc_turquoise"><bui-fa-icon icon="rocket" size="48" :color="$setColor('turquoise')"></bui-fa-icon></span>
           <span class="bui_fs_16">BaidiUI</span>
-          <bui-badge colorname="red" class="bui_p_6_lr">3.0</bui-badge>
+          <bui-badge colorname="red" class="bui_p_6_lr">1.0.4</bui-badge>
         </div>
         <div class="bui_flex_row_r">
           <div class="bui_cursor_p bui_p_12" @click="$refs['menu'].open()"><bui-fa-icon icon="bars" size="32"></bui-fa-icon></div>
