@@ -6,7 +6,7 @@
         <div class="bui_flex_row_c bui_p_12_lr bui_vm">
           <span class="bui_fc_turquoise"><bui-fa-icon icon="rocket" size="48" :color="$setColor('turquoise')"></bui-fa-icon></span>
           <span class="bui_fs_16">BaidiUI</span>
-          <bui-badge colorname="red" class="bui_p_6_lr">1.0.4</bui-badge>
+          <bui-badge colorname="red" class="bui_p_6_lr">1.0.3</bui-badge>
         </div>
         <div class="bui_flex_row_r">
           <div class="bui_cursor_p bui_p_12" @click="$refs['menu'].open()"><bui-fa-icon icon="bars" size="32"></bui-fa-icon></div>
@@ -33,7 +33,7 @@
           <router-link to="/" class="bui_p_12 bui_vm bui_block bui_fc_black bui_bgc_silver_l_h">
             <span class="bui_fc_turquoise"><bui-fa-icon icon="rocket" size="48" :color="$setColor('turquoise')"></bui-fa-icon></span>
             <span class="bui_fs_24">BaidiUI</span>
-            <bui-badge colorname="red" class="bui_p_6_lr">1.0.4</bui-badge>
+            <bui-badge colorname="red" class="bui_p_6_lr">1.0.3</bui-badge>
           </router-link>
         </div>
         <div class="bui_flex_column_m" style="overflow: hidden;">
