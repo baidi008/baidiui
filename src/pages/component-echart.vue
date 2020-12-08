@@ -134,13 +134,11 @@
         设置，数据类型为数组。色值支持名称，十六进制颜色码，RGBA颜色值。每一个item将按照该数组循环使用。
       </p>
       <template v-for="i in color">
-        <div class="bui_col_6_md">
-          <bui-code :model="!!i ? i : false"></bui-code>
-          <div class="bui_p_24_t">
-            <div class="bui_avg_2 bui_row_p_24">
-              <div><bui-chart :data="data.bar" :color="i" height="240px" :ratio="null"></bui-chart></div>
-              <div><bui-chart mode="pie" :data="data.pie" :color="i" height="240px" :ratio="null"></bui-chart></div>
-            </div>
+        <div class="bui_col_6_md" :key="i">
+          <div class="bui_row_p_24">
+            <div><bui-chart title="柱图展示" :data="data.bar" :color="i" :height="320" :ratio="null"></bui-chart></div>
+            <div><bui-chart mode="pie" title="饼图展示" :data="data.pie" :color="i" :height="320" :ratio="null"></bui-chart></div>
+            <bui-code :model="!!i ? i : false"></bui-code>
           </div>
         </div>
       </template>
