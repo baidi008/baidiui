@@ -16,10 +16,12 @@
         组件依赖百度Echart图表引擎，只做基础易用性处理，更多内容请访问
         <a href="https://echarts.apache.org" target="_blank" class="bui_fc_turquoise">Echart 官网</a>
       </p>
-      <div class="bui_col_6_md"><bui-chart title="柱图展示" mode="bar" ratio="21:9" :data="data.bar"></bui-chart></div>
-      <div class="bui_col_6_md"><bui-chart title="线图展示" mode="line" ratio="21:9" :data="data.bar"></bui-chart></div>
-      <div class="bui_col_6_md"><bui-chart title="饼图展示" mode="pie" ratio="21:9" :data="data.pie"></bui-chart></div>
-      <div class="bui_col_6_md"><bui-chart title="环图展示" mode="round" ratio="21:9" :data="data.pie"></bui-chart></div>
+      <div class="bui_col_4_md"><bui-chart title="柱图展示" mode="bar" ratio="16:9" :data="data.bar"></bui-chart></div>
+      <div class="bui_col_4_md"><bui-chart title="线图展示" mode="line" ratio="16:9" :data="data.bar"></bui-chart></div>
+      <div class="bui_col_4_md"><bui-chart title="柱线混合" mode="bar" ratio="16:9" :data="data.mixin"></bui-chart></div>
+      <div class="bui_col_4_md"><bui-chart title="饼图展示" mode="pie" ratio="16:9" :data="data.pie"></bui-chart></div>
+      <div class="bui_col_4_md"><bui-chart title="环图展示" mode="round" ratio="16:9" :data="data.pie"></bui-chart></div>
+      <div class="bui_col_4_md"><bui-chart title="玫瑰图" mode="pie" rose ratio="16:9" :data="data.pie"></bui-chart></div>
       <div class="bui_col_6_md">
         <p class="bui_fs_12 bui_p_12_b">bar(柱图) line(线图) 数据格式</p>
         <bui-code :model="data.bar" height="15rem"></bui-code>
@@ -78,10 +80,13 @@ export default {
   methods: {
     setData() {
       this.data.bar = []
+      this.data.mixin = []
       for (var index = 0; index < 3; index++) {
         this.data.bar.push({ label: 'item-' + index, value: [] })
+        this.data.mixin.push({ label: 'item-' + index, type: index % 2 === 0 ? 'line' : 'bar', value: [] })
         for (var i = 1; i <= 6; i++) {
           this.data.bar[index].value.push({ label: i + '月', value: this.$random(100, 500) })
+          this.data.mixin[index].value.push({ label: i + '月', value: this.$random(100, 500) })
         }
       }
 

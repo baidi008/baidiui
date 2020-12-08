@@ -34,6 +34,7 @@ export default {
     },
     width: { default: '100%' },
     height: { default: null },
+    rose: { type: Boolean, default: false },
     ratio: { default: '16:9' }
   },
   computed: {},
@@ -66,10 +67,11 @@ export default {
         // 柱图&线图
         if (this.mode === 'bar' || this.mode === 'line') {
           this.data.forEach((res, index) => {
+            console.log(res.type)
             legend.push(res.label)
             series.push({
               name: res.label,
-              type: this.mode,
+              type: !!res.type ? res.type : this.mode,
               data: [],
               label: {
                 normal: {
@@ -95,6 +97,7 @@ export default {
             name: this.title,
             type: 'pie',
             radius: [this.mode === 'pie' ? '0%' : '40%', '70%'],
+            roseType: this.rose ? 'radius' : false,
             center: ['50%', '50%'],
             itemStyle: {
               borderRadius: 6,
