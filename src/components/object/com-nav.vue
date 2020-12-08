@@ -33,7 +33,7 @@
           <router-link to="/" class="bui_p_12 bui_vm bui_block bui_fc_black bui_bgc_silver_l_h">
             <span class="bui_fc_turquoise"><bui-fa-icon icon="rocket" size="48" :color="$setColor('turquoise')"></bui-fa-icon></span>
             <span class="bui_fs_24">BaidiUI</span>
-            <bui-badge colorname="red" class="bui_p_6_lr">3.0</bui-badge>
+            <bui-badge colorname="red" class="bui_p_6_lr">1.0.4</bui-badge>
           </router-link>
         </div>
         <div class="bui_flex_column_m" style="overflow: hidden;">
