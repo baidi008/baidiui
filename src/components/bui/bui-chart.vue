@@ -20,6 +20,7 @@ export default {
   props: {
     mode: { type: String, default: 'bar' },
     title: { default: null },
+    direction: { default: 'h' },
     data: {
       type: Array,
       default: () => {
@@ -160,6 +161,19 @@ export default {
 
         // 柱图 & 线图 处理
         if (this.mode === 'bar' || this.mode === 'line') {
+          const cateory = {
+            show: true,
+            data: xAxis,
+            type: 'category',
+            boundaryGap: true,
+            axisLabel: {
+              rotate: 45
+            }
+          }
+          const value = {
+            show: true,
+            type: 'value'
+          }
           Object.assign(option, {
             tooltip: {
               trigger: 'axis',
@@ -170,23 +184,16 @@ export default {
             grid: {
               left: 0,
               right: 0,
-              bottom: 0,
+              bottom: 32,
               top: 48,
               containLabel: true
             },
-            xAxis: {
-              show: true,
-              data: xAxis,
-              type: 'category',
-              boundaryGap: true,
-              axisLabel: {
-                rotate: 45
-              }
-            },
-            yAxis: { show: true },
+            xAxis: this.direction === 'h' ? cateory : value,
+            yAxis: this.direction === 'h' ? value : cateory,
             legend: {
               data: legend,
-              top: 0,
+              type: 'scroll',
+              bottom: 0,
               left: 'center'
             }
           })
@@ -201,13 +208,10 @@ export default {
             xAxis: { show: false },
             yAxis: { show: false },
             legend: {
-              top: 0,
+              type: 'scroll',
+              bottom: 0,
               left: 'center'
             }
-            // legend: {
-            //   bottom: 0,
-            //   left: 'center'
-            // }
           })
         }
 

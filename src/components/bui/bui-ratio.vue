@@ -39,6 +39,7 @@ export default {
   mounted() {
     this.action()
     this.$resize($(this.$el), res => {
+      
       this.$emit('change', res)
       this.action()
     })

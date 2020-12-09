@@ -16,12 +16,15 @@
         组件依赖百度Echart图表引擎，只做基础易用性处理，更多内容请访问
         <a href="https://echarts.apache.org" target="_blank" class="bui_fc_turquoise">Echart 官网</a>
       </p>
-      <div class="bui_col_4_md"><bui-chart title="柱图展示" mode="bar" ratio="16:9" :data="data.bar"></bui-chart></div>
-      <div class="bui_col_4_md"><bui-chart title="线图展示" mode="line" ratio="16:9" :data="data.bar"></bui-chart></div>
-      <div class="bui_col_4_md"><bui-chart title="柱线混合" mode="bar" ratio="16:9" :data="data.mixin"></bui-chart></div>
-      <div class="bui_col_4_md"><bui-chart title="饼图展示" mode="pie" ratio="16:9" :data="data.pie"></bui-chart></div>
-      <div class="bui_col_4_md"><bui-chart title="环图展示" mode="round" ratio="16:9" :data="data.pie"></bui-chart></div>
-      <div class="bui_col_4_md"><bui-chart title="玫瑰图" mode="pie" rose ratio="16:9" :data="data.pie"></bui-chart></div>
+      <div class="bui_col_4_md"><bui-chart title="柱图展示" mode="bar" ratio="4:3" :data="data.bar"></bui-chart></div>
+      <div class="bui_col_4_md"><bui-chart title="线图展示" mode="line" ratio="4:3" :data="data.bar"></bui-chart></div>
+      <div class="bui_col_4_md"><bui-chart title="柱线混合" mode="bar" ratio="4:3" :data="data.mixin"></bui-chart></div>
+      <div class="bui_col_4_md"><bui-chart title="柱图展示(垂直)" direction="v" mode="bar" ratio="4:3" :data="data.bar.filter((res, index) => index < 2)"></bui-chart></div>
+      <div class="bui_col_4_md"><bui-chart title="线图展示(垂直)" direction="v" mode="line" ratio="4:3" :data="data.bar.filter((res, index) => index < 2)"></bui-chart></div>
+      <div class="bui_col_4_md"><bui-chart title="柱线混合(垂直)" direction="v" mode="bar" ratio="4:3" :data="data.mixin.filter((res, index) => index < 2)"></bui-chart></div>
+      <div class="bui_col_4_md"><bui-chart title="饼图展示" mode="pie" ratio="4:3" :data="data.pie"></bui-chart></div>
+      <div class="bui_col_4_md"><bui-chart title="环图展示" mode="round" ratio="4:3" :data="data.pie"></bui-chart></div>
+      <div class="bui_col_4_md"><bui-chart title="玫瑰图" mode="pie" rose ratio="4:3" :data="data.pie"></bui-chart></div>
 
       <p>具体使用方法请参考以下代码，柱图、线图的数据结构和饼图、环形图有区别</p>
 
