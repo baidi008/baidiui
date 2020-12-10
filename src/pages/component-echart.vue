@@ -21,7 +21,7 @@
       <div class="bui_col_4_md"><bui-chart title="柱线混合" mode="bar" ratio="4:3" :data="data.mixin"></bui-chart></div>
       <div class="bui_col_4_md"><bui-chart title="柱图展示(垂直)" direction="v" mode="bar" ratio="4:3" :data="data.bar.filter((res, index) => index < 2)"></bui-chart></div>
       <div class="bui_col_4_md"><bui-chart title="线图展示(垂直)" direction="v" mode="line" ratio="4:3" :data="data.bar.filter((res, index) => index < 2)"></bui-chart></div>
-      <div class="bui_col_4_md"><bui-chart title="柱线混合(垂直)" direction="v" mode="bar" ratio="4:3" :data="data.mixin.filter((res, index) => index < 2)"></bui-chart></div>
+      <div class="bui_col_4_md"><bui-chart title="柱线混合(垂直)" direction="v" mode="bar" ratio="4:3" :data="data.mixin"></bui-chart></div>
       <div class="bui_col_4_md"><bui-chart title="饼图展示" mode="pie" ratio="4:3" :data="data.pie"></bui-chart></div>
       <div class="bui_col_4_md"><bui-chart title="环图展示" mode="round" ratio="4:3" :data="data.pie"></bui-chart></div>
       <div class="bui_col_4_md"><bui-chart title="玫瑰图" mode="pie" rose ratio="4:3" :data="data.pie"></bui-chart></div>
@@ -136,8 +136,8 @@
         <bui-badge size="24">color</bui-badge>
         设置，数据类型为数组。色值支持名称，十六进制颜色码，RGBA颜色值。每一个item将按照该数组循环使用。
       </p>
-      <template v-for="i in color">
-        <div class="bui_col_6_md" :key="i">
+      <template v-for="(i, index) in color">
+        <div class="bui_col_6_md" :key="index">
           <div class="bui_row_p_24">
             <div><bui-chart title="柱图展示" :data="data.bar" :color="i" :height="320" :ratio="null"></bui-chart></div>
             <div><bui-chart mode="pie" title="饼图展示" :data="data.pie" :color="i" :height="320" :ratio="null"></bui-chart></div>

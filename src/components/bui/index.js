@@ -7,8 +7,8 @@ import moment from 'moment'
 //引入jquery
 import $ from 'jquery'
 
-// 引入公用函数
-import buijs from './baidiui.js'
+// 引入 prototype
+import prototype from './prototype.js'
 
 // 引入公用组件
 import buiBadge from './bui-badge.vue'
@@ -48,13 +48,13 @@ export default {
     //引入jQuery
     window.$ = window.jQuery = $
 
-    // 注册moment
+    // 注册公用函数
+    Object.assign(Vue.prototype, prototype)
+
+    // 注册公用函数 moment
     moment.locale('Zh-cn')
     window.$moment = moment
     Vue.prototype.$moment = moment
-
-    // 注册公用函数
-    Vue.use(buijs)
 
     // 注册公用组件
     const buiComponents = {

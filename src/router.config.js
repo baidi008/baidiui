@@ -443,6 +443,16 @@ export default new Router({
             info: 'pagination'
           },
           component: () => import('@/pages/component-pagination')
+        },
+        // component-比例容器
+        {
+          path: '/component/component-ratio',
+          name: 'component-ratio',
+          meta: {
+            title: '比例容器',
+            info: 'ratio'
+          },
+          component: () => import('@/pages/component-ratio')
         }
       ]
     },

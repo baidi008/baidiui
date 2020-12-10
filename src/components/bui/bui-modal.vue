@@ -160,10 +160,9 @@ export default {
     open(options) {
       var _t = this
       _t.$set(_t, 'isOpen', true)
-
       setTimeout(function() {
         _t.setSize()
-        _t.$resize($(_t.$el).find('.bui_scrollbar_wrap:first'), function() {
+        _t.$domChange($(_t.$el).find('.bui_scrollbar_wrap:first')[0], res => {
           _t.setSize()
         })
         setTimeout(function() {
