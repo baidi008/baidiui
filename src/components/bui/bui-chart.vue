@@ -36,7 +36,8 @@ export default {
     width: { default: '100%' },
     height: { default: null },
     rose: { type: Boolean, default: false },
-    ratio: { default: '16:9' }
+    ratio: { default: '16:9' },
+    stack: { type: Boolean, default: false }
   },
   computed: {},
   destroyed() {
@@ -54,6 +55,20 @@ export default {
     })
   },
   methods: {
+    // 数字单位转换
+    unit(num, toFixed) {
+      isNaN(Number(num)) ? (num = 0) : (num = Number(num))
+      isNaN(Number(toFixed)) ? (toFixed = 2) : (toFixed = Number(toFixed))
+      let result = num
+      if (num >= 100000000 || num <= -100000000) {
+        result = (num / 100000000).toFixed(toFixed) + '亿'
+      } else {
+        if (num >= 10000 || num <= -10000) {
+          result = (num / 10000).toFixed(toFixed) + '万'
+        }
+      }
+      return result
+    },
     resize(res) {
       if (this.data) {
         this.size = res
@@ -76,14 +91,23 @@ export default {
             series.push({
               name: res.label,
               type: !!res.type ? res.type : this.mode,
+              stack: this.stack,
               data: [],
               label: {
                 normal: {
                   show: true,
                   position: 'top',
-                  formatter: function(dataLabel) {
-                    return dataLabel.value
+                  textStyle: {
+                    color: 'auto',
+                    textBorderColor: '#fff',
+                    textBorderWidth: 3
+                  },
+                  formatter: res => {
+                    return this.unit(res.value)
                   }
+                },
+                emphasis: {
+                  show: true
                 }
               }
             })
@@ -102,19 +126,23 @@ export default {
             type: 'pie',
             radius: [this.mode === 'pie' ? '0%' : '40%', '70%'],
             roseType: this.rose ? 'radius' : false,
-            center: ['50%', '50%'],
+            center: ['50%', '45%'],
             itemStyle: {
               borderRadius: 6,
               borderColor: '#fff',
               borderWidth: 3
             },
             label: {
+              color: 'auto',
+              lineHeight: 20,
               alignTo: 'labelLine',
-              formatter: '{label|{b}}\n{value|{c}} {perc|({d}%)}',
+              formatter: res => {
+                return '{label|' + res.name + '}\n{value|' + this.unit(res.value) + '} {perc|(' + res.percent + '%)}'
+              },
               rich: {
-                label: { fontSize: 14, opacity: 0.32 },
-                value: { fontSize: 16, opacity: 1 },
-                perc: { fontSize: 12, opacity: 0.64 }
+                label: { fontSize: 12 },
+                value: { fontSize: 14 },
+                perc: { fontSize: 12, color: this.$setColor('black,f') }
               }
             },
             data: []
@@ -125,17 +153,16 @@ export default {
         }
 
         var option = {
-          darkMode: false,
           toolbox: {
             show: false,
             feature: {
               // restore: { show: true, title: false, title: '还原' },
-              saveAsImage: { show: true, title: '保存' },
-              magicType: {
-                show: this.mode === 'bar' || this.mode === 'line',
-                title: { stack: '折叠', tiled: '平铺' },
-                type: ['stack', 'tiled']
-              }
+              // saveAsImage: { show: true, title: '保存' },
+              // magicType: {
+              //   show: this.mode === 'bar' || this.mode === 'line',
+              //   title: { stack: '折叠', tiled: '平铺' },
+              //   type: ['stack', 'tiled']
+              // }
             }
           },
 
@@ -153,7 +180,7 @@ export default {
             title: {
               text: this.title,
               textStyle: { fontSize: 16, fontFamily: '微软雅黑', fontWeight: 'normal', textBorderColor: 'white', textBorderWidth: 8 },
-              left: 0,
+              left: 'center',
               triggerEvent: true
             }
           })
@@ -203,7 +230,27 @@ export default {
           Object.assign(option, {
             tooltip: {
               trigger: 'item',
-              formatter: '<p class="bui_fs_12 bui_fc_black_l">{b}</p><p><span class="bui_fs_14 bui_fc_black">{c}</span> <span class="bui_fs_12 bui_fc_black_l">({d}%)</span></p>'
+              textStyle: {
+                fontSize: 12,
+                color: this.$setColor('black')
+              },
+              borderColor: 'none',
+              backgroundColor: this.$setColor('white,f,12'),
+              formatter: res => {
+                return (
+                  '<b style="color:' +
+                  res.color +
+                  '">' +
+                  res.name +
+                  '</b><br/><span style="font-size:16px">' +
+                  res.value +
+                  '</span> <span style="color:' +
+                  this.$setColor('black,f') +
+                  '">(' +
+                  res.percent +
+                  '%)</span>'
+                )
+              }
             },
             xAxis: { show: false },
             yAxis: { show: false },

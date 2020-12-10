@@ -19,6 +19,9 @@
       <div class="bui_col_4_md"><bui-chart title="柱图展示" mode="bar" ratio="4:3" :data="data.bar"></bui-chart></div>
       <div class="bui_col_4_md"><bui-chart title="线图展示" mode="line" ratio="4:3" :data="data.bar"></bui-chart></div>
       <div class="bui_col_4_md"><bui-chart title="柱线混合" mode="bar" ratio="4:3" :data="data.mixin"></bui-chart></div>
+      <div class="bui_col_4_md"><bui-chart title="柱图展示(折叠)" mode="bar" ratio="4:3" stack :data="data.bar"></bui-chart></div>
+      <div class="bui_col_4_md"><bui-chart title="线图展示(折叠)" mode="line" ratio="4:3" stack :data="data.bar"></bui-chart></div>
+      <div class="bui_col_4_md"><bui-chart title="柱线混合(折叠)" mode="bar" ratio="4:3" stack :data="data.mixin"></bui-chart></div>
       <div class="bui_col_4_md"><bui-chart title="柱图展示(垂直)" direction="v" mode="bar" ratio="4:3" :data="data.bar.filter((res, index) => index < 2)"></bui-chart></div>
       <div class="bui_col_4_md"><bui-chart title="线图展示(垂直)" direction="v" mode="line" ratio="4:3" :data="data.bar.filter((res, index) => index < 2)"></bui-chart></div>
       <div class="bui_col_4_md"><bui-chart title="柱线混合(垂直)" direction="v" mode="bar" ratio="4:3" :data="data.mixin"></bui-chart></div>
@@ -171,6 +174,7 @@
             { name: 'ratio', type: ['String'], default: '16:9', info: '容器强制比例' },
             { name: 'height', type: ['String', 'Number'], default: 'null', info: '容器强制高度，单位为px' },
             { name: 'color', type: ['Array'], default: '[]', info: '图表主题颜色列表，颜色值可为十六进制色值，RGBA色值，颜色名称' },
+            { name: 'stack', type: ['Boolean'], default: 'false', info: '柱图、线图是否开启折叠模式，该参数在mode=bar或者mode=line时有效' },
             { name: 'rose', type: ['Boolean'], default: 'false', info: '饼图、环形图是否开启玫瑰图模式，该参数在mode=pie或者mode=round时有效' }
           ]"
           class="bui_fs_12"
@@ -217,14 +221,14 @@ export default {
         this.data.bar.push({ label: 'item-' + index, value: [] })
         this.data.mixin.push({ label: 'item-' + index, type: index % 2 === 0 ? 'line' : 'bar', value: [] })
         for (var i = 1; i <= 6; i++) {
-          this.data.bar[index].value.push({ label: i + '月', value: this.$random(100, 500) })
-          this.data.mixin[index].value.push({ label: i + '月', value: this.$random(100, 500) })
+          this.data.bar[index].value.push({ label: i + '月', value: this.$random(1000, 20000) })
+          this.data.mixin[index].value.push({ label: i + '月', value: this.$random(1000, 20000) })
         }
       }
 
       this.data.pie = []
       for (var index = 0; index < 4; index++) {
-        this.data.pie.push({ label: 'item-' + index, value: this.$random(100, 500) })
+        this.data.pie.push({ label: 'item-' + index, value: this.$random(1000, 20000) })
       }
     }
   }
