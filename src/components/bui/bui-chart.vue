@@ -160,7 +160,7 @@ export default {
               // saveAsImage: { show: true, title: '保存' },
               // magicType: {
               //   show: this.mode === 'bar' || this.mode === 'line',
-              //   title: { stack: '折叠', tiled: '平铺' },
+              //   title: { stack: '堆叠', tiled: '平铺' },
               //   type: ['stack', 'tiled']
               // }
             }
