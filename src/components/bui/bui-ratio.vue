@@ -12,7 +12,8 @@ export default {
   props: {
     width: { default: '100%' },
     height: { default: null },
-    ratio: { default: '1:1' }
+    ratio: { default: '1:1' },
+    returnheight: { default: 0 }
   },
   methods: {
     action() {

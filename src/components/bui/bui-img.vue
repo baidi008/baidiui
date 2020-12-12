@@ -141,7 +141,7 @@ export default {
     var _t = this
     if (_t.width) {
       _t.setHeight()
-      _t.$domChange(_t.$el, res => {
+      _t.$resize(_t.$el, res => {
         _t.setHeight()
       })
     }

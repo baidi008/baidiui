@@ -456,6 +456,26 @@ export default new Router({
         }
       ]
     },
+    // 自定义指令
+    {
+      path: '/directive',
+      name: 'directive',
+      meta: {
+        title: '自定义指令',
+        info: 'directive',
+        icon: 'dialpad'
+      },
+      component: routeComp,
+      children: [{
+        path: '/directive/directive-loading',
+        name: 'directive-loading',
+        meta: {
+          title: '加载中',
+          info: 'directive-loading',
+        },
+        component: () => import('@/pages/directive-loading'),
+      }]
+    }
 
   ]
 })

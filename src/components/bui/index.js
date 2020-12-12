@@ -10,6 +10,9 @@ import $ from 'jquery'
 // 引入 prototype
 import prototype from './prototype.js'
 
+// 引入自定义指令 directive
+import directive from './directive.js'
+
 // 引入公用组件
 import buiBadge from './bui-badge.vue'
 import buiBtn from './bui-btn.vue'
@@ -92,6 +95,12 @@ export default {
     Object.keys(buiComponents)
     .forEach(key => {
       Vue.component(key, buiComponents[key])
+    })
+
+    // 引入自定义指令
+    Object.keys(directive)
+    .forEach(res => {
+      Vue.directive(res, directive[res])
     })
 
     getWinInfo()

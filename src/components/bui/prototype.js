@@ -145,26 +145,20 @@ export default {
     }
   },
   $resize(el, callback) {
-    // if (el instanceof jQuery) {
-    //   el = el[0]
-    // }
-    // this.$domChange(el, (res) => {
-    //   typeof callback === 'function' ? callback({
-    //     width: res.clientWidth,
-    //     height: res.clientHeight
-    //   }) : null
-    // })
+    if (el instanceof jQuery) {
+      el = el[0]
+    }
     if ($(document)
     .find(el)
     .length > 0) {
-      var _ow = el[0].clientWidth,
-        _oh = el[0].clientHeight;
+      var _ow = el.clientWidth,
+        _oh = el.clientHeight;
       var _loop = self.setInterval(function () {
         if ($(document)
         .find(el)
         .length > 0) {
-          var _nw = el[0].clientWidth,
-            _nh = el[0].clientHeight;
+          var _nw = el.clientWidth,
+            _nh = el.clientHeight;
           if (_nw != _ow || _nh != _oh) {
             typeof (callback) == 'function' ? callback({
               width: _nw,
