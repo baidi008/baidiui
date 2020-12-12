@@ -151,18 +151,18 @@ export default {
   methods: {
     handlerClick(menu) {
       // 展开当前菜单
-      if (this.mode === 'vertical' && !!this.$getKey(menu, this.changeKey.children) && this.$getKey(menu, this.changeKey.children).length) {
+      if (this.mode === 'vertical' && !!this.$getKey(menu, this.changeKey.children) && this.$getKey(menu, this.changeKey.children).length !== 0) {
         this.setOpenKey(this.$getKey(menu, this.changeKey.key))
       }
       // 跳转链接
-      if (!this.$getKey(menu, this.changeKey.children)) {
+      if (!this.$getKey(menu, this.changeKey.children) || this.$getKey(menu, this.changeKey.children).length === 0) {
         this.$emit('click', menu)
       }
     },
     setOpenKey(key) {
       var _openKeys = JSON.parse(JSON.stringify(this.openKeys))
       var _openKeysIndex = _openKeys.findIndex(res => res === key)
-      if (!!this.closeOther) {
+      if (this.closeOther) {
         this.data.forEach(res => {
           const _index = _openKeys.findIndex(item => item === this.$getKey(res, this.changeKey.key))
           if (_index !== -1) {
