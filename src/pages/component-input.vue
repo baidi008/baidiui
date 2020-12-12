@@ -15,6 +15,13 @@
           <div><bui-input v-model="value" placeholder="我是禁用的" :disabled="true"></bui-input></div>
         </div>
       </div>
+      <div>
+        <div class="bui_inline bui_row_p_12">
+          <div><bui-input type="password" v-model="value" placeholder="请输入内容"></bui-input></div>
+          <div><bui-input type="password" v-model="value" placeholder="我是只读的" :readonly="true"></bui-input></div>
+          <div><bui-input type="password" v-model="value" placeholder="我是禁用的" :disabled="true"></bui-input></div>
+        </div>
+      </div>
 
       <div>
         <bui-code language="xml">

@@ -2,7 +2,7 @@
   <div :style="{ display: 'inline-block', width: width, position: 'relative', 'font-size': realSize / 16 + 'rem' }" @mouseover="isHover = true" @mouseleave="isHover = false">
     <!-- title -->
     <div
-      v-if="title && (type === 'text' || type === 'textarea') && realSize >= 32"
+      v-if="title && (type === 'text' || type === 'textarea' || type === 'password') && realSize >= 32"
       :style="{
         position: 'absolute',
         top: 0,
@@ -31,7 +31,7 @@
       <div :class="['bui_flex_row', 'bui_vm']">
         <div class="bui_flex_row_l bui_vm bui_inline bui-nowrap bui_row_p_0">
           <!-- text -->
-          <template v-if="type === 'text'">
+          <template v-if="type === 'text' || type === 'password'">
             <template v-if="textL">
               <div :class="['bui-input-text bui_fc_black_l', effect !== 'line' ? 'bui_bgc_silver_l bui_bds_1_r' : 'bui-input-text-line']">
                 <p :style="{ 'font-size': fontSize }">{{ textL }}</p>
@@ -63,8 +63,8 @@
           <!-- text -->
           <input
             class="bui_block bui_fc_black"
-            v-if="type == 'text'"
-            type="text"
+            v-if="type === 'text' || type === 'password'"
+            :type="type === 'password' ? (!!showPw ? 'text' : 'password') : 'text'"
             :value="value"
             :maxlength="maxlength"
             @input="input($event.target.value)"
@@ -129,7 +129,7 @@
         </div>
         <div class="bui_flex_row_r bui_inline bui-nowrap bui_vm bui_row_p_0">
           <!-- text -->
-          <template v-if="type === 'text'">
+          <template v-if="type === 'text' || type === 'password'">
             <!-- 关闭按钮 -->
             <template v-if="clearable && !!value && !!isHover && !disabled && !readonly">
               <i
@@ -153,6 +153,16 @@
               </div>
             </template>
             <!-- 字数统计 -->
+            <!-- 查看密码 -->
+            <template v-if="type === 'password' && !!value && !!isHover && !disabled && !readonly">
+              <i
+                :class="['fa', showPw ? 'fa-eye-slash' : 'fa-eye', 'bui-input-icon', 'bui-input-icon-r', 'bui_ta_c', 'bui_fc_silver', 'bui_fc_silver_d_h', 'bui_cursor_p']"
+                :style="{ 'font-size': '0.5em' }"
+                @mousedown="showPw = true"
+                @mouseup="showPw = false"
+              ></i>
+            </template>
+            <!-- 查看密码 -->
             <template v-if="iconR">
               <i
                 :class="['bi', 'bi-' + iconR, 'bui-input-icon', 'bui-input-icon-r', 'bui_ta_c']"
@@ -203,7 +213,8 @@ export default {
   data() {
     return {
       isFocus: false,
-      isHover: false
+      isHover: false,
+      showPw: false
     }
   },
   props: {
