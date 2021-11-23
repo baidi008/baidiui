@@ -1,36 +1,22 @@
-<<<<<<< HEAD
-## bui-vue-cli
+
+# baidiui
+
+Baidiui 作为一套基于Vue开发的UI框架，拥有完整、样式统一的UI风格，开箱即用的Vue组件以及高自由度的调用方式。适用于网站、系统后台以及各类web应用。
 
 
+## 安装
 
-=======
-# default
 
-## Project setup
 ```
-npm install
+npm install @baidi008/baidui
 ```
 
-### Compiles and hot-reloads for development
+### 应用
 ```
-npm run serve
+import baidui from '@baidi008/baidiui'
+
+Vue.use(baidiui)
 ```
 
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Run your tests
-```
-npm run test
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
->>>>>>> 仓库初始化
+### 文档
+点击前往 [https://www.baidiui.com](http://www.baidiui.com).
