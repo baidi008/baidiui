@@ -1,0 +1,16 @@
+{
+  "name": "@baidi008/baidiui",
+  "version": "0.1.92",
+  "author": "baidi008@gmail.com",
+  "private": false,
+  "main": "index.js",
+  "dependencies": {
+    "echarts": "^5.0.0",
+    "jquery": "^3.5.1",
+    "moment": "^2.29.1",
+    "highlight.js": "^10.4.1",
+    "node-sass": "^4.14.1",
+    "sass-loader": "^8.0.2",
+    "file-saver": "^2.0.5"
+  }
+}
